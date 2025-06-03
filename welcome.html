@@ -1,11 +1,58 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>مرحباً بك</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>تم تسجيل الدخول بنجاح 🎉</h1>
-  <p>مرحباً بك في موقع لمسة!</p>
+  <main>
+    <h1>👋 مرحباً بك في لمسة</h1>
+    <p id="userName">جارٍ تحميل الاسم الكامل...</p>
+    <p id="userEmail">جارٍ تحميل البريد الإلكتروني...</p>
+
+    <button id="logoutBtn">🚪 تسجيل الخروج</button>
+  </main>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBn2ddsCYig_u_o5cxEIcUUpWWNBHUQe1U",
+      authDomain: "lamsa-2020.firebaseapp.com",
+      projectId: "lamsa-2020",
+      storageBucket: "lamsa-2020.appspot.com",
+      messagingSenderId: "597684556267",
+      appId: "1:597684556267:web:bcb4deda334ecee4b909ae",
+      measurementId: "G-BMDM8BES69"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const userNameDisplay = document.getElementById("userName");
+    const userEmailDisplay = document.getElementById("userEmail");
+
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        userNameDisplay.textContent = `👤 الاسم الكامل: ${user.displayName || 'غير معروف'}`;
+        userEmailDisplay.textContent = `📧 البريد الإلكتروني: ${user.email}`;
+      } else {
+        userNameDisplay.textContent = "❌ لم يتم تسجيل الدخول";
+        userEmailDisplay.textContent = "";
+      }
+    });
+
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      signOut(auth).then(() => {
+        alert("🟢 تم تسجيل الخروج");
+        window.location.href = "index.html";
+      }).catch((error) => {
+        alert("❌ خطأ أثناء تسجيل الخروج: " + error.message);
+      });
+    });
+  </script>
 </body>
 </html>
