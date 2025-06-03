@@ -1,8 +1,8 @@
-// استيراد Firebase
+// استيراد Firebase من الإنترنت مباشرة
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-// تهيئة Firebase باستخدام بيانات مشروعك
+// إعدادات مشروعك على Firebase (انسخها من firebase console)
 const firebaseConfig = {
   apiKey: "AIzaSyBn2ddsCYig_u_o5cxEIcUUpWWNBHUQe1U",
   authDomain: "lamsa-2020.firebaseapp.com",
@@ -13,46 +13,46 @@ const firebaseConfig = {
   measurementId: "G-BMDM8BES69"
 };
 
-// تهيئة التطبيق والمصادقة
+// تهيئة Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// التسجيل
-document.getElementById("registerForm").addEventListener("submit", function(e) {
+// 📌 التعامل مع نموذج التسجيل
+document.getElementById("registerForm").addEventListener("submit", function (e) {
   e.preventDefault();
+
   const name = document.getElementById("registerName").value;
   const email = document.getElementById("registerEmail").value;
   const password = document.getElementById("registerPassword").value;
 
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      sendEmailVerification(userCredential.user);
-      document.getElementById("registerMessage").innerText = "✅ تم التسجيل بنجاح. تحقق من بريدك الإلكتروني.";
-      setTimeout(() => {
-        window.location.href = "home.html";
-      }, 2000);
+      sendEmailVerification(userCredential.user).then(() => {
+        document.getElementById("registerMessage").innerText = "✅ تم إنشاء الحساب، يرجى تأكيد بريدك الإلكتروني.";
+      });
     })
     .catch((error) => {
       document.getElementById("registerMessage").innerText = "❌ خطأ: " + error.message;
     });
 });
 
-// تسجيل الدخول
-document.getElementById("loginForm").addEventListener("submit", function(e) {
+// 📌 التعامل مع نموذج تسجيل الدخول
+document.getElementById("loginForm").addEventListener("submit", function (e) {
   e.preventDefault();
+
   const email = document.getElementById("loginEmail").value;
   const password = document.getElementById("loginPassword").value;
 
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       if (userCredential.user.emailVerified) {
-        document.getElementById("loginMessage").innerText = "✅ تم تسجيل الدخول";
+        document.getElementById("loginMessage").innerText = "✅ تم تسجيل الدخول بنجاح.";
         setTimeout(() => {
-          window.location.href = "welcome.html";
-        }, 2000);
+          window.location.href = "welcome.html"; // تأكد من وجود هذه الصفحة
+        }, 1500);
       } else {
         signOut(auth);
-        document.getElementById("loginMessage").innerText = "❌ يرجى تفعيل البريد الإلكتروني أولاً.";
+        document.getElementById("loginMessage").innerText = "❌ يرجى تفعيل بريدك الإلكتروني أولاً.";
       }
     })
     .catch((error) => {
