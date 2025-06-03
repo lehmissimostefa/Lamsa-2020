@@ -1,66 +1,54 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
-  <head>
-    <meta charset="UTF-8" />
-    <title>لمسة - موقع زواج جزائري</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="style.css" />
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-  </head>
-  <body>
-    <header>
-      <h1><i class="fa-solid fa-heart"></i> لمسة - للزواج الحلال</h1>
-      <nav>
-        <a href="#offers">العروض</a>
-        <a href="#register">تسجيل</a>
-        <a href="#login">دخول</a>
-      </nav>
-    </header>
-    <main>
-      <section id="offers">
-        <h2><i class="fa-solid fa-ring"></i> عروض الزواج في الجزائر</h2>
-        <ul class="offers-list">
-          <li class="offer-card"><i class="fa-solid fa-person-dress"></i> فاطمة، 38 سنة، أرملة، من وهران</li>
-          <li class="offer-card"><i class="fa-solid fa-person-dress"></i> نسرين، 33 سنة، مطلقة، من الجزائر العاصمة</li>
-          <li class="offer-card"><i class="fa-solid fa-person-dress"></i> جميلة، 28 سنة، عزباء، من قسنطينة</li>
-          <li class="offer-card"><i class="fa-solid fa-person-dress"></i> خديجة، 35 سنة، مطلقة، من سطيف</li>
-          <li class="offer-card"><i class="fa-solid fa-person"></i> عبد القادر، 45 سنة، أرمل، من باتنة</li>
-          <li class="offer-card"><i class="fa-solid fa-person"></i> يوسف، 40 سنة، مطلق، من تبسة</li>
-          <li class="offer-card"><i class="fa-solid fa-person"></i> مراد، 30 سنة، أعزب، من تيزي وزو</li>
-          <li class="offer-card"><i class="fa-solid fa-person"></i> رشيد، 50 سنة، يبحث عن التعدد، من البليدة</li>
-        </ul>
-      </section>
-      <section id="register">
-        <h2><i class="fa-solid fa-user-plus"></i> تسجيل حساب جديد</h2>
-        <form id="registerForm">
-          <input type="text" id="registerName" placeholder="الاسم الكامل" required />
-          <input type="email" id="registerEmail" placeholder="البريد الإلكتروني" required />
-          <input type="password" id="registerPassword" placeholder="كلمة المرور" required />
-          <button type="submit">تسجيل</button>
-          <p id="registerMessage"></p>
-        </form>
-      </section>
-      <section id="login">
-        <h2><i class="fa-solid fa-right-to-bracket"></i> تسجيل الدخول</h2>
-        <form id="loginForm">
-          <input type="email" id="loginEmail" placeholder="البريد الإلكتروني" required />
-          <input type="password" id="loginPassword" placeholder="كلمة المرور" required />
-          <button type="submit">دخول</button>
-          <p id="loginMessage"></p>
-        </form>
-      </section>
-    </main>
-    <footer>
-      <p>© 2025 لمسة - Lamsa | جميع الحقوق محفوظة</p>
-      <div class="social-icons">
-        <a href="#"><i class="fa-brands fa-facebook"></i></a>
-        <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
-        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-      </div>
-    </footer>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>لمسة - تسجيل الدخول والتسجيل</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
-    <script src="script.js"></script>
-  </body>
-</html>
+  <h1>🌸 أهلاً بك في موقع لمسة 🌸</h1>
+
+  <!-- نموذج التسجيل -->
+  <h2>📌 إنشاء حساب جديد</h2>
+  <form id="registerForm">
+    <label>👤 الاسم الكامل:</label>
+    <input type="text" id="registerName" required><br>
+
+    <label>📧 البريد الإلكتروني:</label>
+    <input type="email" id="registerEmail" required><br>
+
+    <label>🔒 كلمة المرور:</label>
+    <input type="password" id="registerPassword" required><br>
+
+    <button type="submit">✅ تسجيل</button>
+    <p id="registerMessage"></p>
+  </form>
+
+  <hr>
+
+  <!-- نموذج تسجيل الدخول -->
+  <h2>🔐 تسجيل الدخول</h2>
+  <form id="loginForm">
+    <label>📧 البريد الإلكتروني:</label>
+    <input type="email" id="loginEmail" required><br>
+
+    <label>🔒 كلمة المرور:</label>
+    <input type="password" id="loginPassword" required><br>
+
+    <button type="submit">➡️ دخول</button>
+    <p id="loginMessage"></p>
+  </form>
+
+  <hr>
+
+  <!-- معلومات المستخدم وزر الخروج -->
+  <div id="userSection" style="display:none;">
+    <h3>👋 مرحباً، <span id="userName"></span>!</h3>
+    <button id="logoutBtn">🚪 تسجيل الخروج</button>
+  </div>
+
+  <script type="module" src="script.js"></script>
+
+</body>
+      </html>
